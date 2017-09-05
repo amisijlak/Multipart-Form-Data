@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3669A2EE-B037-49CF-879B-C00D6702B979}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Daishi.Microservices</RootNamespace>
+    <AssemblyName>Daishi.Microservices</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RabbitMQ.Client, Version=3.5.3.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.3.5.3\lib\net40\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Microservice.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueWatchMicroservice.cs" />
+    <Compile Include="QueueWatchMicroserviceContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QueueWatchMicroserviceContainer.Designer.cs">
+      <DependentUpon>QueueWatchMicroserviceContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleMathMicroservice.cs" />
+    <Compile Include="SimpleMathMicroserviceContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SimpleMathMicroserviceContainer.Designer.cs">
+      <DependentUpon>SimpleMathMicroserviceContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleWordMicroservice.cs" />
+    <Compile Include="SimpleWordMicroserviceContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SimpleWordMicroserviceContainer.Designer.cs">
+      <DependentUpon>SimpleWordMicroserviceContainer.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Daishi.AMQP\Daishi.AMQP.csproj">
+      <Project>{96e10007-95a7-4e6a-84fe-6069cb17ed13}</Project>
+      <Name>Daishi.AMQP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daishi.Math\Daishi.Math.csproj">
+      <Project>{b9a80a1d-219b-4d4c-80ac-0330f7ac7a13}</Project>
+      <Name>Daishi.Math</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daishi.Words\Daishi.Words.csproj">
+      <Project>{592053e0-890d-4c0f-ae49-7925bcc7cbf9}</Project>
+      <Name>Daishi.Words</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
